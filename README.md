@@ -22,10 +22,9 @@ pip install -r requirements.txt
 
 **Note ---- I have not used any external database here, only the default database sqlite is being used here so no need for additional database installation**
 
-to run the migration, run the following command in order.
+to run the migration, run the following command in order. I have already pushed the migrations on github so no need to run the makemigrations command.
 
 ```bash
-python manage.py makemigrations 
 python manage.py migrate
 ```
 I have made a management command to load the dummy data into sqlite3 database, run the following command to load the data.
