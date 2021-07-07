@@ -11,7 +11,6 @@ from rest_framework import filters
 
 from rest_framework.settings import api_settings as pagination_settings
 from django_filters.rest_framework import DjangoFilterBackend
-
 from products import serializers
 from products.models import Product, ProductView
 from products import utils
@@ -51,11 +50,13 @@ class ProductViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
         return self.get_paginated_response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
+
         user = request.user
         product_id = kwargs.get("pk")
         logging.info(f"{user} request to get details  of product of id {id}")
         queryset = Product.objects.filter(id=kwargs.get("pk")).first()
         serializer = serializers.ProductSerializer(queryset, context={"user": request.user})
+
         if queryset:
             utils.record_product_view(user, queryset)
             return Response(
@@ -212,6 +213,27 @@ class ProductViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 #             status=status.HTTP_200_OK,
 #         )
 #
+
+# class ProductUpdateView(generics.UpdateAPIView):
+#     __doc__ = """
+#     Update View for the product
+#     """
+#
+#     permission_classes = (IsAuthenticated,)
+#     serializer_class = serializers.ProductSerializer
+#
+#     queryset = Product.objects.all()
+#
+#     def put(self, request, *args, **kwargs):
+#         user = request.user
+#         data = self.partial_update(request, *args, **kwargs)
+#         logging.info(f"{user} request update product with data {request.data}")
+#         new_data = data.data
+#         return Response(
+#             {"status": True, "data": new_data},
+#             status=status.HTTP_200_OK,
+#         )
+
 
 class RecommendProductView(APIView):
     __doc__ = """ api to get list of recommend_product based on random sampling """

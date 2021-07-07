@@ -25,6 +25,7 @@ urlpatterns = [
                 path("user/", include("core.urls")),
                 path("mvc/", include("products.urls")),
                 path('api-auth/', include('rest_framework.urls'))
+
             ]
         ),
     ),

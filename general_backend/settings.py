@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     'django_filters',
     'rest_framework',
-
 ]
 
 MIDDLEWARE = [
@@ -118,7 +117,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
@@ -153,4 +153,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 APPEND_SLASH = False
+
 CORS_ORIGIN_ALLOW_ALL = True

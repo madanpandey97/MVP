@@ -71,3 +71,4 @@ class Command(BaseCommand):
         self.add_user()
         self.add_followers()
         self.add_product()
+

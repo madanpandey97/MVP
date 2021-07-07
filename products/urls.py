@@ -17,4 +17,5 @@ urlpatterns = [
     path("recommend_product/", views.RecommendProductView.as_view()),
     # path("update/<int:pk>/", views.ProductUpdateView.as_view()),
     path('products/', include(router.urls))
+
 ]
